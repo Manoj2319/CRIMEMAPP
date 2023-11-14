@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    body {
+      background-color: grey;
+      padding: 20px;
+      text-align: center;
+    }
+
+    table {
+      background-color: lightgrey;
+      border: 15px solid white;
+      text-align: center;
+      padding: 20px;
+      width: 80%;
+      margin: 0 auto; /* Center the table horizontally */
+    }
+  </style>
+
+  <script>
+    function validateForm() {
+      var firstName = document.getElementById("fn").value;
+      var lastName = document.getElementById("ln").value;
+      var email = document.getElementById("mail").value;
+      var roomNo = document.getElementById("rno").value;
+      var complaints = document.getElementById("complaints").value;
+      var gender = document.getElementById("gender").value;
+      var age = document.getElementById("age").value;
+
+      if (firstName.length === 0 || lastName.length === 0 || email.length === 0 || roomNo.length === 0 || complaints.length === 0 || gender.length === 0 || age.length === 0) {
+        alert("All fields are required");
+        return false;
+      }
+
+      if (!email.endsWith("@gmail.com")) {
+        alert("Email is incorrect. It should end with @gmail.com");
+        return false;
+      }
+
+      if (isNaN(roomNo)) {
+        alert("Room number must be a number");
+        return false;
+      }
+
+      if (isNaN(age) || age < 0 || age > 90) {
+        alert("Age is invalid");
+        return false;
+      }
+
+      if (gender !== "F" && gender !== "M") {
+        alert("Gender is incorrect");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</head>
+
+<body>
+  <h1>PATIENT'S DETAILS</h1>
+  <p>FOR REGISTERING COMPLAINTS, PLEASE ENTER THE NECESSARY DETAILS FOR FILING A COMPLAINT</p>
+  <table>
+    <form action="php1.php" method="post" onsubmit="return validateForm()">
+      <tr>
+        <td><label for="fn">NAME</label></td>
+        <td><input type="text" id="fn" name="fn"></td>
+      </tr>
+      <tr>
+        <td><label for="ln">LAST NAME</label></td>
+        <td><input type="text" id="ln" name="ln"></td>
+      </tr>
+      <tr>
+        <td><label for="mail">MAIL</label></td>
+        <td><input type="text" id="mail" name="mail"></td>
+      </tr>
+      <tr>
+        <td><label for="rno">ROOM NO</label></td>
+        <td><input type="text" id="rno" name="rno"></td>
+      </tr>
+      <tr>
+        <td><label for="complaints">COMPLAINTS</label></td>
+        <td><input type="text" id="complaints" name="complaints"></td>
+      </tr>
+      <tr>
+        <td><label for="gender">GENDER (F/M)</label></td>
+        <td><input type="text" id="gender" name="gender"></td>
+      </tr>
+      <tr>
+        <td><label for="age">AGE</label></td>
+        <td><input type="number" id="age" name="age"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input type="submit" value="Submit"></td>
+      </tr>
+    </form>
+  </table>
+</body>
+
+</html>
